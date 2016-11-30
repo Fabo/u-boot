@@ -52,7 +52,7 @@ u32 spl_boot_mode(const u32 boot_device)
 
 u32 spl_boot_device(void)
 {
-#ifdef CONFIG_SPL_NAND_SIMPLE
+#ifdef CONFIG_SPL_NAND_LOAD
 	return BOOT_DEVICE_NAND;
 #elif defined(CONFIG_SPL_SPI_LOAD)
 	return BOOT_DEVICE_SPI;
