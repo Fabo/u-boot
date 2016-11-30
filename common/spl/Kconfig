@@ -97,6 +97,31 @@ config SYS_MMCSD_RAW_MODE_U_BOOT_SECTOR
 	  Address on the MMC to load U-Boot from, when the MMC is being used
 	  in raw mode. Units: MMC sectors (1 sector = 512 bytes).
 
+config SPL_SELECT_BOOT_MEDIA
+	bool "Select the media to boot from"
+	depends on SPL
+	help
+	  Enable selection of the media that will be used to load u-boot or
+	  the OS. This is not a must, some SoCs need this, some not.
+
+choice
+	prompt "Boot media"
+	depends on SPL_SELECT_BOOT_MEDIA
+
+config SPL_NAND_LOAD
+	bool "Load u-boot or OS from NAND"
+	depends on SPL_NAND_SUPPORT
+
+config SPL_SPI_LOAD
+	bool "Load u-boot or OS from SPI"
+	depends on SPL_SPI_FLASH_SUPPORT
+
+config SPL_MMC_LOAD
+	bool "Load u-boot or OS from MMC"
+	depends on SPL_MMC_SUPPORT
+
+endchoice
+
 config TPL
 	bool
 	depends on SPL && SUPPORT_TPL
